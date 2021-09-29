@@ -1,0 +1,57 @@
+
+::ng-deep .mat-tab-label{
+  /* label style */
+  min-width: 175px !important;
+  color: white;
+
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+
+  margin: 5px;
+}
+
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active  {
+  color: white;
+}
+
+
+::ng-deep .mat-tab-label.mat-tab-label-active:not(.mat-tab-disabled),
+::ng-deep .mat-tab-label.mat-tab-label-active.cdk-keyboard-focused:not(.mat-tab-disabled) {
+  /* Set color when tab loses focus */
+  background-color: #2a2a72;
+  background-image: linear-gradient(315deg, #009ffd 0%, #2a2a72 77%, #f1ca0a 98%);
+
+  opacity: 1;
+}
+
+
+::ng-deep .mat-tab-header{
+  /* Set the default background color of the header */
+  background-color: #2a2a72;
+}
+
+
+::ng-deep .mat-tab-header, .mat-tab-nav-bar {
+  border-bottom: 0;
+}
+
+
+::ng-deep .mat-tab-label {
+  /* Set a border of 2px that has the same color as the background on all labels     */
+  /* NOTE:  This is needed because on hover, we are going to change the border color */
+  border: 2px solid #2a2a72;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+
+::ng-deep  .mat-tab-label:hover:not(.mat-tab-label-active) {
+  /* Show a gold border when the user hovers over an Inactive tab                                  */
+  /* NOTE:  The border should already exist otherwise the tabs will bump a little and it looks bad */
+  border-color: #c0da00;
+  opacity: 1 !important;       /* The opacity is reduced for inactive tabs by default */
+}
+

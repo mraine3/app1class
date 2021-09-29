@@ -1,0 +1,41 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+    <id>buildRdaZipFile</id>
+
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <fileSets>
+        <fileSet>
+            <!-- Add to the zip file:  initial.config and rda.manifest -->
+            <directory>src/main/assembly</directory>
+            <outputDirectory>./</outputDirectory>
+            <includes>
+                <include>initial.config</include>
+                <include>rda.manifest</include>
+            </includes>
+        </fileSet>
+
+        <fileSet>
+            <!-- Add to the zip file:  config/application.yaml -->
+            <directory>src/main/assembly/config</directory>
+            <outputDirectory>./config</outputDirectory>
+            <includes>
+                <include>application.yaml</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+
+    <files>
+        <file>
+            <!-- Add to the zip file:  webapp/backend-exec.jar -->
+            <!-- NOTE:  We need this section to include *AND* rename the file to backend-exec.jar -->
+            <source>../backend/target/backend-${project.version}-exec.jar</source>
+            <outputDirectory>./webapp</outputDirectory>
+            <destName>backend-exec.jar</destName>
+        </file>
+    </files>
+</assembly>

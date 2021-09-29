@@ -1,0 +1,101 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer" : {
+        "my_ngram_analyzer" : {
+          "tokenizer" : "my_ngram_tokenizer",
+          "filter": ["lowercase"]
+        }
+      },
+      "tokenizer" : {
+        "my_ngram_tokenizer" : {
+          "type" : "ngram",
+          "min_gram" : "1",
+          "max_gram" : "25",
+          "token_chars": [ ]
+        }
+      },
+      "normalizer": {
+        "case_insensitive_normalizer": {
+          "type": "custom",
+          "char_filter": [],
+          "filter": [ "lowercase", "asciifolding" ]
+        }
+      }
+    },
+    "max_result_window": 500000,
+    "refresh_interval": "1s",
+    "max_ngram_diff": "25"
+  },
+
+
+  "mappings": {
+    "dynamic": "strict",
+    "properties": {
+
+      "id": {
+        "type": "integer",
+        "ignore_malformed": false,
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          },
+          "sort": {
+            "type": "keyword",
+            "normalizer": "case_insensitive_normalizer"
+          },
+          "filtered": {
+            "type": "text",
+            "analyzer": "my_ngram_analyzer"
+          }
+        }
+      },
+
+      "description": {
+        "type": "text",
+        "fields": {
+          "filtered": {
+            "type": "text",
+            "analyzer": "my_ngram_analyzer"
+          }
+        }
+      },
+
+      "display_name": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          },
+          "sort": {
+            "type": "keyword",
+            "normalizer": "case_insensitive_normalizer"
+          },
+          "filtered": {
+            "type": "text",
+            "analyzer": "my_ngram_analyzer"
+          }
+        }
+      },
+
+      "priority": {
+        "type": "text",
+        "fields": {
+          "raw": {
+            "type": "keyword"
+          },
+
+          "sort": {
+            "type": "keyword",
+            "normalizer": "case_insensitive_normalizer"
+          },
+
+          "filtered": {
+            "type": "text",
+            "analyzer": "my_ngram_analyzer"
+          }
+        }
+      }
+    }
+  }
+}

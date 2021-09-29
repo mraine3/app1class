@@ -1,0 +1,42 @@
+<ng-container *ngIf="(this.userInfoObs | async) as userInfo">
+    <!-- The UserInfoObs data has come in.  So, show the navbar -->
+
+    <div class="navbar">
+      <mat-nav-list style="margin-top: 0; padding-top: 0">
+
+        <!-- View Reports -->
+        <mat-list-item class="navItem" [routerLink]="constants.VIEW_REPORTS_ROUTE" routerLinkActive="active"
+                       *ngIf="userInfo.pageRoutes.get(constants.VIEW_REPORTS_ROUTE)">
+          <a title="View Reports">View Reports</a>
+          <div fxFlex fxLayoutAlign="end end">
+            <a [routerLink]="'page/viewReports'" target="_blank">
+              <i class="fas fa-external-link-alt navItemIcon" title="Open View Reports in a new window"></i>
+            </a>
+          </div>
+        </mat-list-item>
+
+        <!-- Add Report -->
+        <mat-list-item class="navItem" [routerLink]="constants.ADD_REPORTS_ROUTE" routerLinkActive="active"
+                       *ngIf="userInfo.pageRoutes.get(constants.ADD_REPORTS_ROUTE)">
+          <a title="Add Report">Add Report</a>
+          <div fxFlex fxLayoutAlign="end end">
+            <a [routerLink]="constants.ADD_REPORTS_ROUTE" target="_blank">
+              <i class="fas fa-external-link-alt navItemIcon" title="Open Add Report in a new window"></i>
+            </a>
+          </div>
+        </mat-list-item>
+
+        <!-- Show Banner -->
+        <mat-list-item class="navItem" (click)="this.bannerService.showBanner()" *ngIf="! this.bannerIsVisible">
+          <a title="Show Banner" (click)="this.bannerService.showBanner()">Show Banner</a>
+        </mat-list-item>
+
+        <!-- Hide Banner -->
+        <mat-list-item class="navItem" (click)="this.bannerService.hideBanner()" *ngIf="this.bannerIsVisible" >
+          <a title="Hide Banner" (click)="this.bannerService.hideBanner()">Hide Banner</a>
+        </mat-list-item>
+
+      </mat-nav-list>
+    </div>
+
+</ng-container>

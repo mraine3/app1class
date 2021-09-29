@@ -1,0 +1,242 @@
+<div  style="width:250px"
+      [ngClass]="{
+					'light':   this.currentTheme.isLightMode == true,
+					'dark':    this.currentTheme.isLightMode == false
+        }">
+
+  <ng-container *ngIf="(this.userInfoObs | async) as userInfo">
+    <!-- The UserInfoObs data has come in.  So, show the navbar -->
+    <!-- NOTE:  The async-pipe for userInfo must be *inside* the outer div that hsa width of 200px.  Otherwise all of the pages are screwed-up on page load  -->
+
+    <mat-nav-list style="margin-top: 0; padding-top: 0">
+
+      <ng-container  *ngIf="userInfo.pageRoutes.get(constants.VIEW_REPORTS_ROUTE) ||
+                                  userInfo.pageRoutes.get(constants.ADD_REPORTS_ROUTE) ||
+                                  userInfo.pageRoutes.get(constants.ADD_REPORTS2_ROUTE) ||
+                                  userInfo.pageRoutes.get(constants.AUDIT_HISTORY_ROUTE) ||
+                                  userInfo.pageRoutes.get(constants.LONGVIEW_REPORT) ||
+                                  userInfo.pageRoutes.get(constants.UPLOAD_REPORT_ROUTE) ">
+        <!-- The user is authorized to see atleast one of the Reports Navbar Items -->
+
+        <!-- Menu Group 1 -->
+        <div class='navHeader clickable'  (click)="toggleNavGroup(1)">
+          <i class="fa fa-file-alt navHeaderIcon"></i>
+          <span class="navHeaderTitle">Reports</span>
+        </div>
+
+        <!-- Menu Group 1 Items -->
+        <div class='navGroup' [ngClass]="{'navGroupClosed': reportsNavGroupClosed == true}">
+
+          <!-- View Reports -->
+          <mat-list-item class="navItem" [routerLink]="constants.VIEW_REPORTS_ROUTE" routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.VIEW_REPORTS_ROUTE)">
+            <a title="View Reports">View Reports</a>
+            <div fxFlex fxLayoutAlign="end end">
+              <a [routerLink]="constants.VIEW_REPORTS_ROUTE" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon" title="Open View Reports in a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+          <!-- Add Report -->
+          <mat-list-item class="navItem" [routerLink]="constants.ADD_REPORTS_ROUTE" routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.ADD_REPORTS_ROUTE)">
+            <a title="Add Report">Add Report</a>
+            <div fxFlex fxLayoutAlign="end end">
+              <a [routerLink]="constants.ADD_REPORTS_ROUTE" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon" title="Open Add Report in a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+          <!-- Add Report 2 -->
+          <mat-list-item class="navItem" [routerLink]="constants.ADD_REPORTS2_ROUTE" routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.ADD_REPORTS2_ROUTE)">
+            <a title="Add Report">Add Report 2</a>
+            <div fxFlex fxLayoutAlign="end end">
+              <a [routerLink]="constants.ADD_REPORTS2_ROUTE" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon" title="Open Add Report 2 in a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+          <!-- Audit History -->
+          <mat-list-item class="navItem" [routerLink]="constants.AUDIT_HISTORY_ROUTE" routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.AUDIT_HISTORY_ROUTE)">
+            <a title="Audit History">Audit History</a>
+            <div fxFlex fxLayoutAlign="end end" >
+              <a [routerLink]="constants.AUDIT_HISTORY_ROUTE" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon" title="Open Audit History in a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+          <!-- Upload Report -->
+          <mat-list-item class="navItem" [routerLink]="constants.UPLOAD_REPORT_ROUTE" routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.UPLOAD_REPORT_ROUTE)">
+            <a title="Upload Report">Upload Report</a>
+            <div fxFlex fxLayoutAlign="end end" >
+              <a [routerLink]="constants.UPLOAD_REPORT_ROUTE" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon"
+                   title="Open 'Upload Report' a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+          <!-- Long View Report -->
+          <mat-list-item class="navItem" [routerLink]="constants.LONGVIEW_REPORT" routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.LONGVIEW_REPORT)">
+            <a title="Long View Report">Long View Report</a>
+            <div fxFlex fxLayoutAlign="end end" >
+              <a [routerLink]="constants.LONGVIEW_REPORT" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon"
+                   title="Open 'Long View Report' a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+          <!-- Report Grid View -->
+          <mat-list-item class="navItem" [routerLink]="constants.REPORTS_GRID_VIEW_ROUTE" routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.REPORTS_GRID_VIEW_ROUTE)">
+            <a title="Long View Report">Report Grid View</a>
+            <div fxFlex fxLayoutAlign="end end" >
+              <a [routerLink]="constants.REPORTS_GRID_VIEW_ROUTE" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon" title="Open 'Report Grid View' in a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+
+          <!-- Report Submit Markdown -->
+          <mat-list-item class="navItem" [routerLink]="constants.REPORT_SUBMIT_MARKDOWN" routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.REPORT_SUBMIT_MARKDOWN)">
+            <a title="Report Submit Markdown">Report Submit Markdown</a>
+            <div fxFlex fxLayoutAlign="end end" >
+              <a [routerLink]="constants.REPORT_SUBMIT_MARKDOWN" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon" title="Open 'Report Submit Markdown' in a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+          <!-- Report PDF Viewer Page -->
+          <mat-list-item class="navItem" [routerLink]="constants.REPORT_PDFVIEWER_ROUTE" routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.REPORT_PDFVIEWER_ROUTE)">
+            <a title="PDF Viewer">PDF Viewer</a>
+            <div fxFlex fxLayoutAlign="end end" >
+              <a [routerLink]="constants.REPORT_PDFVIEWER_ROUTE" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon" title="Open PDF Viewer in a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+
+          <!-- Tab Group Page -->
+          <mat-list-item class="navItem" [routerLink]="constants.TAB_GROUP_ROUTE" routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.TAB_GROUP_ROUTE)">
+            <a title="PDF Viewer">Tab Group Page</a>
+            <div fxFlex fxLayoutAlign="end end" >
+              <a [routerLink]="constants.TAB_GROUP_ROUTE" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon" title="Open Tab Group Page in a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+          <!-- Server Side Grid Page -->
+          <mat-list-item class="navItem"
+                         [routerLink]="constants.SERVER_SIDE_GRID_ROUTE"
+                         routerLinkActive="active"
+                         *ngIf="userInfo.pageRoutes.get(constants.SERVER_SIDE_GRID_ROUTE)">
+            <a title="Tab Group Page">Server Side Grid Page</a>
+            <div fxFlex fxLayoutAlign="end end" >
+              <a [routerLink]="constants.SERVER_SIDE_GRID_ROUTE" target="_blank">
+                <i class="fas fa-external-link-alt navItemIcon" title="Open Server Side Grid Page in a new window"></i>
+              </a>
+            </div>
+          </mat-list-item>
+
+        </div>  <!-- End of navMenuGroup -->
+      </ng-container>
+
+
+      <!-- Menu Group 2 -->
+      <div class='navHeader clickable'   (click)="toggleNavGroup(2)">
+        <i class="fa fa-file-alt navHeaderIcon"></i>
+        <span class="navHeaderTitle">Analytics</span>
+      </div>
+
+      <!-- Menu Group 2 Items -->
+      <div class='navGroup' [ngClass]="{'navGroupClosed': analyticsGroupClosed == true}">
+
+        <!-- Dashboard -->
+        <mat-list-item class="navItem" [routerLink]="constants.DASHBOARD_ROUTE" routerLinkActive="active"
+                       *ngIf="userInfo.pageRoutes.get(constants.DASHBOARD_ROUTE)">
+          <a title="Dashboard">Dashboard</a>
+          <div fxFlex fxLayoutAlign="end end">
+            <a [routerLink]="constants.DASHBOARD_ROUTE" target="_blank">
+              <i class="fas fa-external-link-alt navItemIcon" title="Open 'Dashboard' in a new window"></i>
+            </a>
+          </div>
+        </mat-list-item>
+
+        <!-- USA Map -->
+        <mat-list-item class="navItem" [routerLink]="constants.USA_MAP_ROUTE" routerLinkActive="active"
+                       *ngIf="userInfo.pageRoutes.get(constants.USA_MAP_ROUTE)">
+          <a title="USA Map">USA Map</a>
+          <div fxFlex fxLayoutAlign="end end">
+            <a [routerLink]="constants.USA_MAP_ROUTE" target="_blank">
+              <i class="fas fa-external-link-alt navItemIcon" title="Open 'USA Map' in a new window"></i>
+            </a>
+          </div>
+        </mat-list-item>
+
+        <!-- Drill Down Bar Chart -->
+        <mat-list-item class="navItem" [routerLink]="constants.CHART_DRILLDOWN_ROUTE" routerLinkActive="active"
+                       *ngIf="userInfo.pageRoutes.get(constants.CHART_DRILLDOWN_ROUTE)">
+          <a title="Drill Down Chart">Drill Down Chart</a>
+          <div fxFlex fxLayoutAlign="end end">
+            <a [routerLink]="constants.CHART_DRILLDOWN_ROUTE" target="_blank">
+              <i class="fas fa-external-link-alt navItemIcon" title="Open 'Drill Down Chart' in a new window"></i>
+            </a>
+          </div>
+        </mat-list-item>
+
+        <!-- Chart 1 -->
+        <mat-list-item class="navItem" [routerLink]="constants.CHART1_ROUTE" routerLinkActive="active"
+                       *ngIf="userInfo.pageRoutes.get(constants.CHART1_ROUTE)">
+          <a title="Chart 1">Chart 1</a>
+          <div fxFlex fxLayoutAlign="end end">
+            <a [routerLink]="constants.CHART1_ROUTE" target="_blank">
+              <i class="fas fa-external-link-alt navItemIcon" title="Open Chart 1 in a new window"></i>
+            </a>
+          </div>
+        </mat-list-item>
+
+        <!-- Chart 2 -->
+        <mat-list-item class="navItem" [routerLink]="constants.CHART2_ROUTE" routerLinkActive="active"
+                       *ngIf="userInfo.pageRoutes.get(constants.CHART2_ROUTE)">
+          <a title="Chart 2">Chart 2</a>
+          <div fxFlex fxLayoutAlign="end end">
+            <a [routerLink]="constants.CHART2_ROUTE" target="_blank">
+              <i class="fas fa-external-link-alt navItemIcon" title="Open Chart 2 in a new window"></i>
+            </a>
+          </div>
+        </mat-list-item>
+
+
+        <!-- Help -->
+        <mat-list-item class="navItem" (click)="this.downloadHelpFile()">
+          <a title="Show Help File">Help</a>
+          <div fxFlex fxLayoutAlign="end end">
+            <a (click)="this.downloadHelpFile()" target="_blank">
+              <i class="fas fa-external-link-alt navItemIcon" title="Show Help File in new window"></i>
+            </a>
+          </div>
+        </mat-list-item>
+      </div>  <!-- End of Menu Group 2 Items -->
+
+    </mat-nav-list>
+
+  </ng-container>
+
+</div>
+

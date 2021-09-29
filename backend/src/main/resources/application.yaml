@@ -1,0 +1,127 @@
+
+##########################################################
+# application.yaml   (used for development purposes)
+#
+# NOTE:  Make sure there are no leading spaces on any of these lines
+##########################################################
+name: app1
+server.servlet.context-path: /app1
+
+
+# Set the Active profile to be dev
+spring.profiles.active: dev
+
+# Disable cors check because we are running in local dev mode
+# NOTE:  order is important.  Make sure disable.cors comes *AFTER* you set the profile
+disable.cors: true
+
+# Tell Spring to disable DataSource Auto Configuration (so you can run a springboot app without a datasource
+spring.autoconfigure:
+  exclude:
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+
+
+###########################################################
+# ElasticSearch Settings
+##########################################################
+es:
+  url: http://localhost:9201
+  ssl_enabled: false
+
+
+##########################################################
+# File Upload Settings
+##########################################################
+spring.servlet.multipart.enabled: true
+
+# Set the maximum file upload size for one file    (-1 is unlimited)
+spring.servlet.multipart.max-file-size: 300MB
+
+# Set the maximum request size
+# If a user uploads 5 files of 1 MB, then the entire request size is 5 MB   (-1 is unlimited)
+spring.servlet.multipart.max-request-size: 400MB
+
+
+# Tell Spring to not run flyway automatically
+# NOTE:  In the DataSourceConfig, java code is used to run a flyway migrate
+spring.flyway.enabled: false
+
+
+
+---
+#################################################################################################
+#         D E V       P R O F I L E
+#
+#################################################################################################
+spring.profiles: dev
+
+##########################################################
+# Database Settings
+##########################################################
+app.datasource:
+  driver-class-name: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/app1_db
+  username: app1_user
+  password: secret
+  schema: app1_db
+  maxPoolSize: 10
+
+
+################################################
+# SSL Settings
+################################################
+server.port: 8080
+server.ssl.enabled: false    # SSL is disabled so use plain-text http
+
+# Use hard-coded security principal
+use.hardcoded.authenticated.principal: true
+
+
+
+---
+#################################################################################################
+#       P R O D       P R O F I L E
+#
+#################################################################################################
+spring.profiles: prod
+
+# So, we're running in HTTPS mode but using a hard-coded principal for security
+use.hardcoded.authenticated.principal: true
+ssl.security.mode: pki
+
+
+##########################################################
+# Database Settings
+##########################################################
+app.datasource:
+  driver-class-name: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/app1_db
+  username: app1_user
+  password: secret
+  schema: app1_db
+  maxPoolSize: 10
+
+
+################################################
+# SSL Settings
+################################################
+server:
+  port: 8443
+  ssl:
+    key-store: backend/src/main/dev_resources/myKeystore.jks
+    key-store-password: changeit
+    key-store-type: JKS
+    client-auth: need
+    trust-store: backend/src/main/dev_resources/myTruststore.jks
+    trust-store-password: changeit
+    trust-store-type: JKS
+    enabled: true        # SSL is enabled so use https
+
+
+# Secure the cookies
+server.servlet.session.cookie.secure: true
+server.servlet.session.cookie.http-only: true
+
+

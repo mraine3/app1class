@@ -1,0 +1,48 @@
+<div  [ngClass]="{
+					'light':   this.currentTheme.isLightMode == true,
+					'dark':    this.currentTheme.isLightMode == false
+        }">
+
+  <div fxFlex fxLayout="row" fxLayoutGap="0">
+
+    <!-- Left Side of the Header -->
+    <div fxFlex fxLayoutAlign="left center" fxLayout="row" fxLayoutGap="10px">
+
+      <!-- App Logo -->
+      <img class="appLogo clickable" [routerLink]="'/'" src="./assets/images/logo.png" height="47px" alt="Application Logo" title="Application Logo">
+
+
+      <!-- App Navbar -->
+      <a  class="button" (click)="toggleAppNavbar()">
+        <i class="fa fa-bars"></i>
+      </a>
+
+      <app-search-box></app-search-box>
+    </div>
+
+
+    <!-- Center Part of the Header -->
+    <div fxFlex  fxLayoutAlign="center center">
+
+      <!-- Application Title -->
+      <h1 class="appLogo clickable" [routerLink]="'/'">
+        Angular App1
+      </h1>
+    </div>
+
+    <!-- Right Side of the Header -->
+    <div fxFlex fxLayoutAlign="end center">
+
+      <!-- Theme Changer -->
+      <app-theme-changer-menu style="margin-right: 5px"></app-theme-changer-menu>
+
+
+      <!-- User Menu -->
+      <a class="button" (click)="toggleUserNavbar()">
+        <span class="username">John.Smith</span>&nbsp;
+        <span class="fa fa-user"></span>
+      </a>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.divider {
+  background: linear-gradient(to left, #5e6b7b, rgba(94, 107, 123, 0));
+  z-index: 25;            /* The z-index must be high so we can see the divider over the pdf-viewer */
+  cursor: col-resize;     /* Set the pointer to the east-west column resizer */
+}
+
+

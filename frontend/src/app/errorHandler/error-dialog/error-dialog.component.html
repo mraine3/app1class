@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{this.data.status_code}}&nbsp;{{this.data.error_text}}</h2>
+<div mat-dialog-content>
+  This URL failed: {{this.data.url}}<br/><br/>
+  {{this.data.message}}<br/>
+</div>
+
+<div mat-dialog-actions>
+  <button type="button" mat-button mat-raised-button color="primary" class="button-class"
+          (click)="this.onCancelClick()">
+    Close
+  </button>
+</div>

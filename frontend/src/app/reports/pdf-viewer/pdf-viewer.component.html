@@ -1,0 +1,102 @@
+<div class="page-container">
+
+  <div fxFlexFill fxLayout="column">
+
+    <div fxFlex fxLayout="row" fxLayoutGap="0">
+
+      <!-- Left Side of the Top Row -->
+      <div fxFlex fxLayoutAlign="left center" fxLayout="row" fxLayoutGap="0">
+        <h1 class="mat-h1">PDF Viewer Page</h1>
+      </div>
+
+
+      <!-- Right Side of the Top Row -->
+      <div fxFlex fxLayoutAlign="end center">
+
+      </div>
+
+    </div>  <!-- End of top row -->
+
+
+    <!-- Start of the second row -->
+    <div fxFlex  fxLayout="column" fxLayoutGap="0">
+
+
+      <div fxFlex fxLayout="row" fxLayoutGap="0" >
+
+
+          <div [fxFlex]="this.leftFlexValue" #leftDiv fxLayoutAlign="left center" fxLayout="row" fxLayoutGap="15px" style="border: 1px solid #babfc7" >
+            <!-- Left Side of the Page -->
+
+            <!-- Use the full height of the page (minus some height for the header and title) -->
+            <div style="height: calc(100vh - 135px)">
+
+
+              <div style="display: block">
+                  <!-- "Cool Kid" button -->
+                  <button type="button" mat-stroked-button color="primary" (click)="this.showSampleFileInPdfViewer('cool_kid.pdf')" title="Show the 'Cool Kid' PDF File">Cool Kid</button>
+              </div>
+
+              <div style="display: block; margin-top: 15px">
+                <!-- "Pro Git" button -->
+                <button type="button" mat-stroked-button color="primary" (click)="this.showSampleFileInPdfViewer('progit.pdf')" title="Show 'Pro Git' PDF File">Pro Git</button>
+              </div>
+
+              <div style="display: block; margin-top: 15px">
+                  <!-- Clear button -->
+                  <button type="button" mat-stroked-button  color="primary" (click)="this.clearPdfViewer()" title="Clear the PDF Viewer">Clear</button>
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+          <div fxFlex="10px" *ngIf="this.showDivider" cdkDrag cdkDragLockAxis="x" class="divider"
+               (cdkDragEnded)="dragEnded($event)">
+              <!-- Draggable Column Divider (that will adjust the column widths  -->
+          </div>
+
+
+          <div [fxFlex]="this.rightFlexValue" #rightDiv fxLayoutAlign="end center" style="border: 1px solid #babfc7">
+              <!-- Right Side of the Page -->
+
+              <ngx-extended-pdf-viewer style="height: 100%; width: 100%"
+                                       [src]="this.pdfSrc"
+                                       [logLevel]=0
+                                       [page]=1
+                                       [backgroundColor]="this.pdfViewerBackgroundColor"
+                                       [showBorders]=true
+                                       [showToolbar]=true
+                                       [showSidebarButton]=true
+                                       [sidebarVisible]=false
+                                       [showFindButton]=true
+                                       [showPagingButtons]=true
+                                       [showZoomButtons]=true
+                                       [showOpenFileButton]=false
+                                       [showPresentationModeButton]=true
+                                       [showPrintButton]=true
+                                       [showDownloadButton]=true
+                                       [showBookmarkButton]=false
+                                       [showSecondaryToolbarButton]=true
+                                       [showRotateButton]=true
+                                       [showHandToolButton]=true
+                                       [showScrollingButton]=true
+                                       [showSpreadButton]=true
+                                       [showPropertiesButton]=true
+                                       [useBrowserLocale]=false
+                                       [zoom]="'page-width'"
+                                       [language]="'en-us'">
+              </ngx-extended-pdf-viewer>
+
+            </div>
+
+
+      </div>   <!-- End of angular flex left/row setup -->
+
+    </div>  <!-- End of second row -->
+
+  </div> <!-- End of Angular flex column -->
+
+</div>  <!-- End of page-container -->

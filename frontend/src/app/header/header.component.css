@@ -1,0 +1,113 @@
+/*********** L I G H T      M O D E  *************/
+.light {
+  color: white;
+  height: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  /* Dark Blue longer....Light Blue....Dark Blue longer */
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#19134b+0,19134b+13,257aaf+50,19134b+87,19134b+100 */
+  background: #19134b; /* Old browsers */
+  background: -moz-linear-gradient(left,  #19134b 0%, #19134b 13%, #257aaf 50%, #19134b 87%, #19134b 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #19134b 0%,#19134b 13%,#257aaf 50%,#19134b 87%,#19134b 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #19134b 0%,#19134b 13%,#257aaf 50%,#19134b 87%,#19134b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19134b', endColorstr='#19134b',GradientType=1 ); /* IE6-9 */
+}
+
+.light .appLogo {
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+
+  font-size: 1.7em;
+  font-weight: 400;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  /* Outline of zero gets rid of the annoying box around the link */
+  outline: 0;
+
+  white-space: nowrap;
+}
+
+.light a.button {
+  background-color: #19134b;   /* dark blue */
+  border: 1px solid #444;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #f7f7f7;
+  padding: 7px 14px 7px 14px;
+  height: 20px;
+  cursor: pointer;
+  -webkit-transition: 200ms all linear;
+  -moz-transition: 200ms all linear;
+  -o-transition: 200ms all linear;
+  transition: 200ms all linear;
+  background-image: none;
+}
+
+.light a.button:hover {
+  background-color: #2579af;   /* light blue */
+  color: white;
+  border-color: #f9f9f9;
+}
+
+
+
+/***********  D A R K      M O D E  *************/
+.dark {
+  color: white;
+  height: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  /* Colors:   extra dark is 111111,  dark grey is 303030,  Light grey is 424242 */
+
+  /* Extra Dark 111111.....dark grey 303030....Light grey 424242 ....dark grey 303030...Extra Dark 111111 */
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#303030+0,303030+20,111111+50,303030+83,303030+100 */
+  background: #303030; /* Old browsers */
+  background: -moz-linear-gradient(left,  #303030 0%, #303030 20%, #111111 50%, #303030 83%, #303030 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #303030 0%,#303030 20%,#111111 50%,#303030 83%,#303030 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #303030 0%,#303030 20%,#111111 50%,#303030 83%,#303030 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#303030', endColorstr='#303030',GradientType=1 ); /* IE6-9 */
+}
+
+.dark .appLogo {
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+
+  font-size: 1.7em;
+  font-weight: 400;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  /* Outline of zero gets rid of the annoying box around the link */
+  outline: 0;
+
+  white-space: nowrap;
+}
+
+.dark a.button {
+  background-color: #111111;   /* dark black */
+  border: 1px solid #444;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #f7f7f7;
+  padding: 7px 14px 7px 14px;
+  height: 20px;
+  cursor: pointer;
+  -webkit-transition: 200ms all linear;
+  -moz-transition: 200ms all linear;
+  -o-transition: 200ms all linear;
+  transition: 200ms all linear;
+  background-image: none;
+}
+
+.dark  a.button:hover {
+  background-color: #303030;   /* light grey */
+  color: white;
+  border-color: #f9f9f9;
+}

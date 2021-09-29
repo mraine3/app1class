@@ -1,0 +1,140 @@
+<mat-card>
+  <mat-card-title>Add a Report</mat-card-title>
+
+  <mat-card-content>
+    <form #form="ngForm" novalidate autocomplete="off">
+
+      <mat-form-field>
+        <mat-label>Enter Report Name</mat-label>
+
+        <!-- Use the matInput for input fields inside <mat-form-field>...</mat-form-field> tags -->
+        <input matInput type="text" name="report_name"  [(ngModel)]="report.name" required #name="ngModel" />
+
+        <mat-error>
+          <!-- This mat-error tag is displayed if this form field is invalid AND touched -->
+          Report Name is required
+        </mat-error>
+
+      </mat-form-field>
+
+      <ng-container  *ngIf="form.controls.report_name?.touched && form.controls.report_name?.errors==null">
+        <!-- The user visited this form field and filled-it in correctly -->
+        <div style="display:inline; margin-left: 5px">
+          <i class="fa fa-check checkbox-color"></i>
+        </div>
+      </ng-container>
+
+      <br/>
+
+      <mat-form-field>
+        <mat-label>Choose Source</mat-label>
+
+        <!-- Use the matNativeControl for select and input fields inside <mat-form-field>...</mat-form-field> tags -->
+        <select matNativeControl name="report.source" [(ngModel)]="report.source">
+          <option [value]=null>-Select Source-</option>
+          <option [value]=100>Israel</option>
+          <option [value]=101>United Kingdom</option>
+          <option [value]=102>USA</option>
+        </select>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field>
+        <mat-label>Choose Priority</mat-label>
+
+        <!-- Single Select -->
+        <mat-select name="priority" [(ngModel)]="report.priority" required>
+          <mat-option [value]=null>-Select Priority-</mat-option>
+          <mat-option [value]=1>Low</mat-option>
+          <mat-option [value]=2>Medium</mat-option>
+          <mat-option [value]=3>High</mat-option>
+          <mat-option [value]=4>Critical</mat-option>
+        </mat-select>
+
+        <mat-error>
+          <!-- This mat-error tag is displayed if this form field is invalid AND touched -->
+          Priority is required
+        </mat-error>
+
+      </mat-form-field>
+
+      <ng-container  *ngIf="form.controls.priority?.touched && form.controls.priority?.errors==null">
+        <!-- The user visited this form field and filled-it in correctly -->
+        <div style="display:inline; margin-left: 5px">
+          <i class="fa fa-check checkbox-color" ></i>
+        </div>
+      </ng-container>
+      <br/>
+
+
+      <mat-form-field>
+        <mat-label>Choose Authors</mat-label>
+
+        <!-- Multiple Select -->
+        <mat-select multiple name="report.authors" [(ngModel)]="report.authors">
+          <mat-option value="10">Adam</mat-option>
+          <mat-option value="11">Ben</mat-option>
+          <mat-option value="12">Peter</mat-option>
+          <mat-option value="13">Justin</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field style="margin-top: 20px;">
+        <mat-label>Report Start Date</mat-label>
+
+        <div class="date_container">
+          <input  matInput name="start.date" [(ngModel)]="report.start_date"
+                  [matDatepicker]="startDatePicker" required>
+          <mat-datepicker-toggle [for]="startDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #startDatePicker [startAt]="this.defaultReportStartDate"></mat-datepicker>
+        </div>
+
+        <mat-error>
+          <!-- This mat-error tag is displayed if this form field is invalid AND touched -->
+          Report Start Date is Required
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field style="margin-left: 40px">
+        <mat-label>Report End Date</mat-label>
+
+        <div class="date_container">
+          <input  matInput name="end.date" [(ngModel)]="report.end_date"
+                  [matDatepicker]="endDatePicker" required>
+          <mat-datepicker-toggle [for]="endDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #endDatePicker></mat-datepicker>
+        </div>
+
+        <mat-error>
+          <!-- This mat-error tag is displayed if this form field is invalid AND touched -->
+          Report End Date is Required
+        </mat-error>
+
+      </mat-form-field>
+      <br/>
+
+      <!-- Reset Button -->
+      <button type="button" (click)="reset(form)" style="margin-top: 20px"
+              mat-raised-button>
+        <i class="fa fa-backspace"></i>
+        Reset
+      </button>
+
+      <!-- Save Button -->
+      <button type="button" (click)="save(form)" mat-raised-button color="primary"
+        [disabled]="this.formSubmitted && form.invalid">
+        <i class="fa fa-plus"></i>
+        Save
+      </button>
+
+    </form>
+  </mat-card-content>
+
+
+  <pre>
+ report={{report | json}}
+            </pre>
+
+</mat-card>

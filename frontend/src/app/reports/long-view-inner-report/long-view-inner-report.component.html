@@ -1,0 +1,27 @@
+
+<!-- Card 1 has a smaller margin-top than the other cards -->
+<mat-card class="mat-elevation-z4" style="margin: 5px 15px 15px 10px;">
+  <mat-card-title>Section 1</mat-card-title>
+
+  <mat-card-content>
+    <p>This, that, and the other thing</p>
+    <p>This, that, and the other thing</p>
+    <p>This, that, and the other thing</p>
+    <p>This, that, and the other thing</p>
+  </mat-card-content>
+</mat-card>
+
+
+
+<!-- Cards 2 to N have a margin-top of 15px -->
+<mat-card class="mat-elevation-z4" style="margin: 15px 15px 15px 10px"
+          *ngFor="let number of [2,3,4,5,6,7,8]">
+  <mat-card-title>Section {{number}}</mat-card-title>
+
+  <mat-card-content>
+    <p>This, that, and the other thing</p>
+    <p>This, that, and the other thing</p>
+    <p>This, that, and the other thing</p>
+    <p>This, that, and the other thing</p>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,95 @@
+<div fxFlexFill fxLayoutAlign="start start" fxLayout="row" fxLayoutGap="0">
+
+  <div fxFlex fxLayoutGap="0" style="overflow: auto">
+    <!-- Left Column -->
+
+    <!-- Card 1 has a smaller margin-top than the other cards -->
+    <mat-card class="mat-elevation-z4" style="margin: 5px 15px 15px 10px;" id="section1">
+      <mat-card-title>Section 1</mat-card-title>
+
+      <mat-card-content>
+        <p>This, that, and the other thing</p>
+        <p>This, that, and the other thing</p>
+        <p>This, that, and the other thing</p>
+        <p>This, that, and the other thing</p>
+      </mat-card-content>
+    </mat-card>
+
+
+
+    <!-- Cards 2 to N have a margin-top of 15px -->
+    <mat-card class="mat-elevation-z4" style="margin: 15px 15px 15px 10px"
+              *ngFor="let number of [2,3,4,5,6,7,8]"
+              id="section{{number}}">
+      <mat-card-title>Section {{number}}</mat-card-title>
+
+      <mat-card-content>
+        <p>This, that, and the other thing</p>
+        <p>This, that, and the other thing</p>
+        <p>This, that, and the other thing</p>
+        <p>This, that, and the other thing</p>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+
+  <div fxFlex="200px">
+    <!-- Right Column is fixed-width at 200 px -->
+
+    <div class="fixed">
+
+    <!-- Use padding-inline-start to reduce the left-side padding on this ul tag -->
+    <ul class="internal-nav" style="margin-top: 10px;  padding-inline-start: 10px;">
+
+      <li class="internal-nav"><mat-divider></mat-divider></li>
+
+
+      <li class="internal-nav">
+        <!-- Go to Section 1 -->
+        <a title="Go to 'Section 1'" (click)="this.scrollToTargetId('section1')"  class="clickable">Section 1</a>
+      </li>
+      <li class="internal-nav"><mat-divider></mat-divider></li>
+
+
+      <li class="internal-nav">
+        <!-- Go to Section 2 -->
+        <a title="Go to 'Section 2'" (click)="this.scrollToTargetId('section2')"  class="clickable">Section 2</a>
+      </li>
+      <li class="internal-nav"><mat-divider></mat-divider></li>
+
+
+      <li class="internal-nav">
+        <!-- Go to Section 3 -->
+        <a title="Go to 'Section 3'" (click)="this.scrollToTargetId('section3')"  class="clickable">Section 3</a>
+      </li>
+      <li class="internal-nav"><mat-divider></mat-divider></li>
+
+
+      <li class="internal-nav">
+        <!-- Go to Section 4 -->
+        <a title="Go to 'Section 4'" (click)="this.scrollToTargetId('section4')"  class="clickable">Section 4</a>
+      </li>
+      <li class="internal-nav"><mat-divider></mat-divider></li>
+
+
+      <li class="internal-nav">
+        <!-- Go to Section 5 -->
+        <a title="Go to 'Section 5'" (click)="this.scrollToTargetId('section5')"  class="clickable">Section 5</a>
+      </li>
+      <li class="internal-nav"><mat-divider></mat-divider></li>
+
+
+      <li class="internal-nav">
+        <!-- Go to Section 6 -->
+        <a title="Go to 'Section 6'" (click)="this.scrollToTargetId('section6')"  class="clickable">Section 6</a>
+      </li>
+      <li class="internal-nav"><mat-divider></mat-divider></li>
+
+
+    </ul>
+    </div>  <!-- End of fixed div -->
+
+  </div>  <!-- End of Right-side column -->
+
+</div>

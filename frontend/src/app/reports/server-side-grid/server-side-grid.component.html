@@ -1,0 +1,104 @@
+<div class="page-container" style="background: inherit">
+
+  <div fxFlexFill fxLayout="column" fxLayoutGap="5px">
+
+    <div fxFlex fxLayout="row" fxLayoutGap="0">
+
+      <!-- Left Side of the Top Row -->
+      <div fxFlex fxLayoutAlign="left center" fxLayout="row" fxLayoutGap="0">
+        <h1 class="mat-h1">Server Side Grid Page</h1>
+      </div>
+
+
+      <!-- Right Side of the Top Row -->
+      <div fxFlex fxLayoutAlign="end center">
+
+      </div>
+
+    </div>  <!-- End of top row -->
+
+
+
+    <!-- Start of the "button row" -->
+    <div fxFlex  fxLayout="row" fxLayoutGap="5px">
+
+      <!-- Left Side of the "button row"  -->
+
+      <!-- Reset Button -->
+      <div fxFlex fxLayoutAlign="left end" fxLayout="row" fxLayoutGap="0">
+        <button mat-stroked-button type="button" color="primary" (click)="this.resetGrid()" title="Reset the Grid">
+          Reset
+        </button>
+      </div>
+
+
+      <!-- Center of the "button row"  -->
+      <div fxFlex fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="0">
+
+        <div [ngClass]="{   'light':     this.currentTheme.isLightMode == true,
+                            'dark':      this.currentTheme.isLightMode == false
+                    }">
+
+              <div   [ngClass]="{   'light searchBoxWrapperValid   fa-border':   this.isValidQuery == true,
+                                    'dark searchBoxWrapperInvalid fa-border':   this.isValidQuery == false }">
+
+                    <!-- Search Box -->
+                    <input matInput type="text"  #searchBox [(ngModel)]="this.rawSearchQuery" (keyup.enter)="this.runSearch()"
+                           [ngClass]="{   'searchBoxValid':  this.isValidQuery == true,
+                                          'searchBoxInvalid':   this.isValidQuery == false } "
+                           placeholder="Enter Criteria..."
+                           autocomplete="off"
+                           aria-label="search box" />
+
+                    <!-- Search Icon -->
+                    <span class="searchBoxIcon" (click)="this.runSearch()">
+                      <i class="fa fa-search"></i>
+                    </span>
+              </div>
+
+          </div>
+      </div>
+
+      <!-- Right Side of the "button row" -->
+      <div fxFlex fxLayoutAlign="end end">
+        <!-- Display the total matches -->
+        <b>{{this.totalMatches | number }} matches</b>
+      </div>
+
+    </div>  <!-- End of "button row" -->
+
+
+
+    <!-- Start of the 3rd row -->
+    <div fxFlex  fxLayout="column" fxLayoutGap="0">
+
+      <mat-card class="mat-elevation-z4" style="margin: 0; padding: 0">
+        <mat-card-content>
+
+          <!-- Setup a wrapper div that uses the entire available height (total height - 165px) -->
+          <div style="height: calc(100vh - 175px);">
+
+            <!-- AG-Grid -->
+            <ag-grid-angular
+              style="width: 100%; height: 100%"
+              [ngClass]="{   'ag-theme-alpine':        this.currentTheme.isLightMode == true,
+                             'ag-theme-alpine-dark':   this.currentTheme.isLightMode == false
+                    }"
+              [rowData]="this.rowData"
+              [defaultColDef]="this.defaultColDefs"
+              [columnDefs]="this.columnDefs"
+              [gridOptions]="this.gridOptions"
+              [frameworkComponents]="this.frameworkComponents"
+              (gridReady)="this.onGridReady($event)">
+            </ag-grid-angular>
+
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+
+    </div> <!-- End of 3rd row -->
+
+  </div> <!-- End of Angular flex column -->
+
+</div>  <!-- End of grid container -->

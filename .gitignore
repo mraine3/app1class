@@ -1,0 +1,39 @@
+############################################################
+# Filename .gitignore
+#
+# How to reproduce
+#   1) Go to https://www.gitignore.io/
+#   2) Enter the name of your IDE:  intellij
+#   3) Press Generate
+#
+# Purpose
+#   Tell Git which files and directories to ignore
+#
+# Created by using https://www.gitignore.io/api/intellij
+# And, then modified by me
+############################################################
+
+### Ignore Intellij specific files ###
+.idea/*
+*.iml
+
+## File-based project format:
+*.iws
+
+## Ignore compiled files in the target directory
+/target/
+
+## Ignore node_modules directory
+frontend/node_modules/*
+frontend/web/index.jsp
+frontend/node/*
+frontend/target/*
+
+# Ignore frontend/dist directory
+frontend/dist/*
+
+## Ignore the target directories
+backend/target/*
+
+## Ignore the target directories found in install-bdp
+install-bdp/target/*

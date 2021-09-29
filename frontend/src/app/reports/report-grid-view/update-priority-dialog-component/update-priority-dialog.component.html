@@ -1,0 +1,39 @@
+<ng-container *ngIf="(this.priorityObs | async) as priorities">
+
+    <!-- Dialog Title -->
+    <h2 mat-dialog-title>Update Priority</h2>
+
+    <mat-dialog-content>
+      <!-- Dialog Content -->
+      Select a new priority for these selected items:
+
+      <form novalidate autocomplete="off" [formGroup]="myForm">
+        <mat-form-field>
+          <mat-label>Select Priority:</mat-label>
+
+          <!-- Priority Drop Down -->
+          <mat-select formControlName="newPriority">
+            <mat-option *ngFor="let priority of priorities"  value="{{priority.id}}">{{priority.name}}</mat-option>
+          </mat-select>
+
+          <mat-error>
+            Priority is Required
+          </mat-error>
+        </mat-form-field>
+      </form>
+
+
+    </mat-dialog-content>
+
+
+
+    <mat-dialog-actions style="justify-content: center">
+      <!-- Dialog Buttons are here -->
+
+      <!-- Cancel Button -->
+      <button mat-raised-button (click)="this.cancelClicked()" title="Cancel">Cancel</button>
+
+      <!-- OK Button -->
+      <button mat-raised-button color="primary" (click)="this.okClicked()" title="OK">OK</button>
+    </mat-dialog-actions>
+</ng-container>

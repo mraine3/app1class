@@ -1,0 +1,107 @@
+<div class="page-container">
+
+  <div fxFlexFill fxLayout="column">
+
+    <div fxFlex fxLayout="row" fxLayoutGap="0">
+
+      <!-- Left Side of the Top Row -->
+      <div fxFlex fxLayoutAlign="left center" fxLayout="row" fxLayoutGap="0">
+        <h1 class="mat-h1">Tab Group Page</h1>
+      </div>
+
+
+      <!-- Right Side of the Top Row -->
+      <div fxFlex fxLayoutAlign="end center">
+
+      </div>
+
+    </div>  <!-- End of top row -->
+
+
+    <!-- Start of the second row -->
+    <div fxFlex  fxLayout="column" fxLayoutGap="0">
+
+      <mat-card class="mat-elevation-z0" style="padding: 0">
+        <mat-card-content>
+
+          <!-- Setup a wrapper div that uses the entire available height (total height - 165px) -->
+          <div style="height: calc(100vh - 165px)">
+
+            <mat-tab-group class="mat-elevation-z8" mat-align-tabs="start" color="default"
+                           [selectedIndex]=0
+                           [animationDuration]="'250ms'"
+                           [disableRipple]=true>
+
+              <mat-tab label="Enrichment">
+                <!--     E N R I C H M E N T     T A B     -->
+                <ng-template matTabContent>
+                  <div class="tab-content">
+
+                    <mat-card class="mat-elevation-z0">
+                      <mat-card-title>Enrichment</mat-card-title>
+
+                      <mat-card-content style="height: calc(100vh - 245px);">
+                          This is the Enrichment Tab
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </ng-template>
+
+              </mat-tab>
+
+              <mat-tab label="Original Submission">
+                <!--     O R I G I N A L     S U B M I S S I O N     T A B     -->
+                <ng-template matTabContent>
+                  <div class="tab-content">
+                    <mat-card class="mat-elevation-z0">
+                      <mat-card-title>User's Original Submission</mat-card-title>
+
+                      <mat-card-content style="height: calc(100vh - 245px);">
+                        This is the original submission tab
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </ng-template>
+              </mat-tab>
+
+              <mat-tab label="Documents">
+                <!--     D O C U M E N T S     T A B     -->
+                <ng-template matTabContent>
+                  <div class="tab-content">
+                    <mat-card class="mat-elevation-z0">
+                      <mat-card-title>Documents & Attachments</mat-card-title>
+
+                      <mat-card-content style="height: calc(100vh - 245px);">
+                         This is the documents tab
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </ng-template>
+              </mat-tab>
+
+              <mat-tab label="History">
+                <!--     H I S T O R Y     T A B     -->
+                <ng-template matTabContent>
+                  <div class="tab-content">
+                    <mat-card class="mat-elevation-z0">
+                      <mat-card-title>History of this Submission</mat-card-title>
+
+                      <mat-card-content style="height: calc(100vh - 245px);">
+                        This is the history tab
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </ng-template>
+              </mat-tab>
+            </mat-tab-group>
+
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+
+    </div> <!-- End of 2nd row -->
+
+  </div> <!-- End of Angular flex column -->
+
+</div>  <!-- End of grid container -->

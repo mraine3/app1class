@@ -1,0 +1,24 @@
+.odd-row {
+  background-color: #e8f4fe;
+  padding: 8px;
+}
+
+.even-row {
+  background-color: inherit;
+  padding: 8px;
+}
+
+
+.table-cell {
+  padding: 5px;   /* table padding for regular cell */
+  font-size: 110%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.header-cell {
+  padding: 4px;     /* table padding for header cell */
+  font-size: 125%;
+  font-weight: bolder;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+

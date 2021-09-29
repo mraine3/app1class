@@ -1,0 +1,44 @@
+{
+    "name":        "AngularApp1 Web App",
+    "description": "A web application containing....",
+    "appKey":      "angularApp1",
+    "version":     "1.0.0-SNAPSHOT",
+    "components": [
+        {
+                "type": "postgresql",
+                "name": "AngularApp1 Database",
+                "description": "Create the app1_db database and user for this webapp.",
+                "properties": {
+                    "public": {
+                        "db.name": "app1_db",
+                        "db.username": "{{{ postgresql.username }}}",
+                        "db.password": "{{{ postgresql.password }}}"
+                    }
+            },
+                "config": {
+                     "databases": [{
+                             "name": "app1_db",
+                             "create": true
+                         }]
+                }
+        },
+
+        {
+                "type": "web-service",
+                "name": "AngularApp1 WebApp",
+                "description": "Some web app that does something",
+                "config": {
+                    "context": "/app1",
+                    "files": [
+                        {
+                            "src": "webapp"
+                        },
+                        {
+                            "src": "config/application.yaml",
+                            "template": true
+                        }
+                        ]
+                }
+        }
+    ]
+}

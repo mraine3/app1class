@@ -1,0 +1,162 @@
+.navGroupClosed {
+  display: none;
+}
+
+/*********** L I G H T      M O D E  *************/
+.light {
+  /* Set the colors for the navbar */
+  background: #19134b;   /* dark blue so it blends with the header */
+  color: white;
+  height: 100%;
+  overflow: hidden;
+}
+
+.light .mat-list-item {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: normal;
+  color: white !important;
+  height: 25px;
+
+  white-space: nowrap;   /* stop wrapping of text */
+}
+
+.light .navHeader{
+  /* The navHeader has a background gradient that goes to the left */
+  background: linear-gradient(to left, #5e6b7b, rgba(94, 107, 123, 0));
+
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+
+  padding: 0;
+  margin-top: 0;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;   /* stop wrapping of text */
+}
+
+.light .navHeaderIcon {
+  margin-left: 7px;
+}
+
+.light .navHeaderTitle {
+  margin-left: 8px;
+}
+
+.light .mat-list-item.navItem {
+  height: 40px;
+}
+
+.light .navItem:hover  {
+  color: #fff;
+  background: linear-gradient(to right, #5e6b7b, rgba(94, 107, 123, 0)) !important;
+  font-weight: bold;
+}
+
+.light .navItemIcon {
+  /* By default, the navItemIcon is invisible (It's same color as the navbar background) */
+  color: #19134b
+}
+
+.light .mat-list-item.active .navItemIcon {
+  /* User is not hovering over an active navItemIcon.  So, set it's background as the same color as the background so it's invisible */
+  color: #5e6bd5;
+}
+
+.light .navItem:hover .navItemIcon {
+  /* User is hovering over navItem on a non-active route */
+  color: #999
+}
+
+.light .mat-list-item.active{
+  /* Set the color for the actively clicked navbar item */
+  /* Active mat-list-item has a background gradient that goes to the right */
+  color: #fff;
+  background: #5e6bd5 !important;
+  font-weight: 700;
+}
+
+
+/***********  D A R K      M O D E  *************/
+.dark  {
+  /* Set the colors for the navbar */
+  background: #303030;   /* dark grey is 303030....Light grey is 424242 */
+  color: white;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dark .mat-list-item {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: normal;
+  color: white !important;
+  height: 25px;
+
+  white-space: nowrap;   /* stop wrapping of text */
+}
+
+.dark .navHeader{
+  /* The navHeader has a background gradient that goes to the left */
+  background: linear-gradient(to left, #5e6b7b, rgba(94, 107, 123, 0));
+
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+
+  padding: 0;
+  margin-top: 0;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;   /* stop wrapping of text */
+}
+
+.dark .navHeaderIcon {
+  margin-left: 7px;
+}
+
+.dark .navHeaderTitle {
+  margin-left: 8px;
+}
+
+.dark .mat-list-item.navItem {
+  height: 40px;
+}
+
+.dark .navItem:hover  {
+  color: #fff;
+  background: linear-gradient(to right, #5e6b7b, rgba(94, 107, 123, 0)) !important;
+  font-weight: bold;
+}
+
+.dark .navItemIcon {
+  /* By default, the navItemIcon is invisible (It's same color as the navbar background) */
+  color: #303030
+}
+
+
+.dark .mat-list-item.active .navItemIcon {
+  /* User is not hoving over an active navItemIcon.  So, set it's background as the same color as the background so it's invisible */
+  color: #111111;
+}
+
+.dark .navItem:hover .navItemIcon {
+  /* User is hovering over navItem on a non-active route */
+  color: #999
+}
+
+.dark .mat-list-item.active{
+  /* Set the color for the actively clicked navbar item */
+  /* Active mat-list-item has a background gradient that goes to the right */
+  color: #fff;
+  background: #111111 !important;   /* light blue is 5e6bd5 */
+  font-weight: 700;
+}
+

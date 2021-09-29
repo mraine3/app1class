@@ -1,0 +1,69 @@
+<mat-card>
+  <mat-card-title>Upload Report</mat-card-title>
+
+  <mat-card-content>
+
+    <div style="text-align: center; display: block; margin-top: 10px">
+
+      <!-- Upload Button -->
+      <label for="file-upload" class="custom-file-upload">
+        <i class="fas fa-cloud-upload-alt"></i>&nbsp;&nbsp;Select File to Upload
+      </label>
+      <input id="file-upload" type="file" name="file" ng2FileSelect #selectedFile
+             [uploader]="uploader"
+             [disabled]="this.pageState != this.PROCESSING_NOT_STARTED"
+             (onFileSelected)="this.onFileSelected($event)" />
+
+      <!-- Show information about selected file -->
+      <div *ngIf="this.selectedFileToUpload != null"  style="margin-top: 10px;">
+        Ready to upload <b>{{this.selectedFileToUpload.file.name}}</b>
+      </div>
+
+      <!-- Page Buttons -->
+      <div style="display: block; margin-top: 25px">
+
+        <!-- Clear Button -->
+        <button type="button" mat-raised-button
+                [disabled]="(this.uploader.queue.length == 0) || (this.pageState == this.PROCESSING_IN_PROGRESS)"
+                (click)="this.clearAll()">
+          Reset
+        </button>
+
+        <!-- Begin Upload Button -->
+        <button type="button" mat-raised-button style="margin-left: 15px" color="primary"
+                [disabled]="(this.uploader.queue.length == 0) || (this.pageState != this.PROCESSING_NOT_STARTED)"
+                (click)="this.beginFileUpload()">
+          Upload File
+        </button>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 20px">
+      <div *ngIf="(this.pageState == this.PROCESSING_IN_PROGRESS) || (this.pageState == this.PROCESSING_UPLOAD_IN_PROGRESS)">
+        <!-- Show Spinner -->
+        <div style="margin-top: 20px"><i class="fa fa-spin fa-spinner fa-2x"></i> Processing the pdf file...</div>
+      </div>
+
+      <div *ngIf="this.uploader.progress > 0"  style="margin-top: 20px">
+        <!-- Show the "Upload" Progress Bar -->
+        Percentage of the file uploaded: {{uploader.progress | number:'1.0-0'}}%
+        <mat-progress-bar  color="accent" [value]="uploader.progress"></mat-progress-bar>
+      </div>
+
+      <div *ngIf="this.percentProcessed > 0"  style="margin-top: 20px">
+        <!-- Show the "File Processing" Progress Bar and keep it present (even if the job state changes from wip to completed -->
+        Percentage of the file Processed: {{percentProcessed | number:'1.0-0'}}%
+        <mat-progress-bar color="primary" [value]="this.percentProcessed"></mat-progress-bar>
+      </div>
+
+      <div *ngIf="this.pageState == this.PROCESSING_FINISHED_FAILURE" style="margin-top: 20px">
+        <!-- The Job Finished in Failure:  So, show an error message -->
+        <p class="error-message">Error occurred processing this file.<br/>{{this.userMessage}}</p>
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>
+
+

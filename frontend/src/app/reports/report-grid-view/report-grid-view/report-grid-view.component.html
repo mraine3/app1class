@@ -1,0 +1,80 @@
+<div class="page-container">
+
+  <div fxFlexFill fxLayout="column" fxLayoutGap="5px">
+
+    <div fxFlex fxLayout="row" fxLayoutGap="0">
+
+      <!-- Left Side of the Top Row -->
+      <div fxFlex fxLayoutAlign="left center" fxLayout="row" fxLayoutGap="0">
+        <h1 class="mat-h1">Report Grid View</h1>
+      </div>
+
+
+      <!-- Right Side of the Top Row -->
+      <div fxFlex fxLayoutAlign="end center">
+
+      </div>
+
+    </div>  <!-- End of top row -->
+
+
+
+    <!-- Start of the "button row" -->
+    <div fxFlex  fxLayout="row" fxLayoutGap="5px">
+
+      <!-- Left Side of the "button row"  -->
+      <div fxFlex fxLayoutAlign="left center" fxLayout="row" fxLayoutGap="0">
+
+        <button mat-stroked-button color="primary" class="grid-button" title="{{this.updateButtonLabel}}"
+              [disabled]="this.totalRowsSelected == 0"
+              (click)="this.openUpdatePriorityPopup()">
+          <i class="far fa-user"></i>
+          {{this.updateButtonLabel}}
+        </button>
+
+      </div>
+
+
+      <!-- Right Side of the "button row" -->
+      <div fxFlex fxLayoutAlign="end center">
+
+      </div>
+
+    </div>  <!-- End of "button row" -->
+
+
+
+    <!-- Start of the 3rd row -->
+    <div fxFlex  fxLayout="column" fxLayoutGap="0">
+
+      <mat-card class="mat-elevation-z4" style="margin: 0; padding: 0">
+        <mat-card-content>
+
+          <!-- Setup a wrapper div that uses the entire available height (total height - 165px) -->
+          <div style="height: calc(100vh - 175px);">
+
+            <!-- AG-Grid -->
+            <ag-grid-angular
+              style="width: 100%; height: 100%"
+              [ngClass]="{   'ag-theme-alpine':        this.currentTheme.isLightMode == true,
+                             'ag-theme-alpine-dark':   this.currentTheme.isLightMode == false
+                            }"
+              [rowData]="this.rowData"
+              [defaultColDef]="this.defaultColDefs"
+              [columnDefs]="this.columnDefs"
+              [gridOptions]="this.gridOptions"
+              [frameworkComponents]="this.frameworkComponents"
+              (selectionChanged)="this.generateDerivedValuesOnUserSelection()"
+              (gridReady)="this.onGridReady($event)">
+            </ag-grid-angular>
+
+          </div>
+
+        </mat-card-content>
+      </mat-card>
+
+    </div> <!-- End of 3rd row -->
+
+  </div> <!-- End of Angular flex column -->
+
+</div>  <!-- End of grid container -->

@@ -1,0 +1,39 @@
+.internal-nav  {
+  list-style-type: none;
+  margin: 0;
+  padding: 4px;
+  white-space: nowrap;  /* Stop the wrapping */
+}
+
+.internal-nav a {
+  white-space: nowrap;  /* Stop the wrapping */
+  font-family: Roboto;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+
+.internal-nav a:hover {
+  /* The user has hovered over any anchor */
+  white-space: nowrap;  /* Stop the wrapping */
+  color: #007bff;
+  font-family: Roboto;
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.mat-divider {
+  /* Set the length of the mat-divider */
+  width: 140px;
+}
+
+
+.fixed {
+  position: fixed;
+  width: 200px; /* should be the same width as the column */
+}
+
+mat-card{
+  margin: 15px;
+  margin-right: 10px !important;    /* Needed to show the right-side of the mat-card near the fixed internal nav */
+}

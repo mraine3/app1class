@@ -1,0 +1,99 @@
+#######################################################################
+# application.yaml   (used for **PRODUCTION** purposes)
+#
+# This is the application.yaml that will be packaged into the RDA
+#######################################################################
+name: app1
+server.servlet.context-path: /
+
+
+# Enable cors check because we are *NOT* running in local dev mode
+disable.cors: false
+
+# Set the Active profile to be prod
+spring.profiles.active: prod
+
+# Tell Spring to disable DataSource Auto Configuration (so you can run a springboot app without a datasource
+# Tell Spring to disable using the White label ErrorMvcAutoConfiguration
+spring.autoconfigure:
+  exclude:
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+    - org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+
+# Disable the white label page
+server.error.whitelabel.enabled: true
+
+# Tell Spring to not run flyway
+# NOTE:  In the DataSourceConfig, there is code to run flyway migrate on webapp startup
+spring.flyway.enabled: false
+
+
+
+#################################################################
+# File Upload Settings
+#################################################################
+spring.servlet.multipart.enabled: true
+
+# Set the maximum file upload size for one file    (-1 is unlimited)
+spring.servlet.multipart.max-file-size: 24MB
+
+
+# Set the maximum request size
+# If a user uploads 5 files of 1 MB, then the entire request size is 25 MB   (-1 is unlimited)
+spring.servlet.multipart.max-request-size: 25MB
+
+
+
+#################################################################
+# Database Settings
+# ASSUMPTION:  The appKey in the rda.manifest is "angularApp1"
+#################################################################
+app.datasource:
+  driver-class-name: org.postgresql.Driver
+  url: jdbc:postgresql://{{{bdp:postgresql.servers}}}/{{{ angularApp1:db.name }}}
+  username: {{{ angularApp1:db.username }}}
+  password: {{{ angularApp1:db.password }}}
+  schema: public
+  maxPoolSize: 10
+  flyway-migrate-on-startup: true
+
+
+
+###########################################################
+# ElasticSearch Settings
+##########################################################
+es:
+  url: {{{bdp:proxy.url}}}/elasticsearch-primary
+  ssl_enabled: true
+  add_bdp_security: true
+  client-p12: /etc/pki/java/keystore.p12
+  client-p12-password: changeit
+  trust-store: {{{bdp:host.pki.truststore.jks}}}
+  trust-store-password: {{{bdp:host.pki.truststore.password}}}
+  trust-store-type: JKS
+
+
+
+###########################################################
+# SSL Settings
+##########################################################
+ssl.security.mode: header
+
+server:
+  ssl:
+    key-store: {{{bdp:host.pki.keystore.jks}}}
+    key-store-password: {{{bdp:host.pki.keystore.password}}}
+    key-store-type: JKS
+    client-auth: need
+    trust-store: {{{bdp:host.pki.truststore.jks}}}
+    trust-store-password: {{{bdp:host.pki.truststore.password}}}
+    trust-store-type: JKS
+    enabled: true
+
+# Secure the cookies
+server.servlet.session.cookie.secure: true
+server.servlet.session.cookie.http-only: true
+
+# We are running on the BDP, so get the CN info from passed-in headers
+use.hardcoded.authenticated.principal: false

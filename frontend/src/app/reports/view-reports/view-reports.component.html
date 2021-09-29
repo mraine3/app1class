@@ -1,0 +1,105 @@
+<ng-container *ngIf="(this.allReportsObs | async) as allReports">
+
+      <!-- The REST call has come back with data.  So, display the page -->
+      <mat-card>
+
+        <mat-card-title>View All Reports</mat-card-title>
+
+        <mat-card-content>
+
+              <div fxFlex fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="start stretch" >
+
+                <!-- Show table headers -->
+                <div fxLayout="row" fxLayoutGap="0"  >
+
+                  <div fxFlex="15%" >
+                    <!-- Empty header above buttons -->
+                  </div>
+
+                  <div fxFlex="15%" fxLayoutAlign="center" >
+                    <!-- Report ID -->
+                    <span class="header-cell">ID</span>
+                  </div>
+
+                  <div fxFlex="25%" fxLayoutAlign="center">
+                    <!-- Report Name -->
+                    <span class="header-cell">Name</span>
+                  </div>
+
+                  <div fxFlex="10%" fxLayoutAlign="center">
+                    <!-- Report Priority -->
+                    <span class="header-cell">Priority</span>
+                  </div>
+
+                  <div fxFlex="15%" fxLayoutAlign="center">
+                    <!-- Report Start Date -->
+                    <span class="header-cell">Start Date</span>
+                  </div>
+
+                  <div fxFlex="15%" fxLayoutAlign="center">
+                    <!-- Report Start Date -->
+                    <span class="header-cell">End Date</span>
+                  </div>
+
+                </div>    <!-- End of div that holds the fxFlex for this *HEADER ROW* -->
+
+
+
+                <!-- Loop through all of the reports -->
+                <ng-container *ngFor="let report of allReports;  let index = index">
+
+                  <!-- Start a new row -->
+                  <div fxLayout="row" fxLayoutGap="0"
+                       [ngClass]="{ 'odd-row':     0 === index % 2,
+                                   'even-row': 1 === index % 2 }"         >
+
+                    <div fxFlex="15%"  fxLayoutAlign="center">
+                      <!-- Edit Report Button -->
+                      <button mat-raised-button (click)="this.goToEditReport(report.id)">Edit</button>
+
+                      <button mat-icon-button (click)="this.goToLongView(report.id)"  title="Go to Long View">
+                        <i class="fa fa-file-alt"></i>
+                      </button>
+
+                      <button mat-icon-button (click)="this.download(report.id)"  title="Download File">
+                        <i class="fa fa-download"></i>
+                      </button>
+                    </div>
+
+
+                    <div fxFlex="15%"  fxLayoutAlign="center">
+                      <!-- Report ID -->
+                      <span class="table-cell">{{report.id}}</span>
+                    </div>
+
+                    <div fxFlex="25%" fxLayoutAlign="center">
+                      <!-- Report Name -->
+                      <span class="table-cell">{{report.name}}</span>
+                    </div>
+
+                    <div fxFlex="10%" fxLayoutAlign="center">
+                      <!-- Report Priority -->
+                      <span class="table-cell">{{report.priority}}</span>
+                    </div>
+
+                    <div fxFlex="15%" fxLayoutAlign="center">
+                      <!-- Report Start Date -->
+                      <span class="table-cell">{{report.start_date}}</span>
+                    </div>
+
+                    <div fxFlex="15%" fxLayoutAlign="center">
+                      <!-- Report Start Date -->
+                      <span class="table-cell">{{report.end_date}}</span>
+                    </div>
+
+                  </div>    <!-- End of div that holds the fxFlex for this *DATA ROW* -->
+
+                </ng-container>   <!-- End of looping through allReports -->
+
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+
+</ng-container>

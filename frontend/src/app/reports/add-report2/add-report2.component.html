@@ -1,0 +1,125 @@
+<!-- Subscribe to Multiple Observables -->
+<ng-container *ngIf="
+       {
+          report_sources: reportSourceObs | async,
+          authors: authorsObs | async,
+          priorities: this.prioritiesObs | async
+       } as data;">
+
+
+<mat-card>
+  <form novalidate autocomplete="off" [formGroup]="myForm" >
+
+    <mat-card-title>Add a Report 2</mat-card-title>
+
+    <mat-card-content>
+
+      <mat-form-field>
+        <mat-label>Enter Report Name</mat-label>
+
+        <!-- Report Name -->
+        <input matInput type="text" formControlName="report_name" />
+
+        <mat-error>
+          Report Name is required
+        </mat-error>
+      </mat-form-field>
+      <br/>
+
+      <ng-container *ngIf="data.report_sources; else loadingReportSources">
+        <!-- Report Sources are loaded -->
+        <mat-form-field style="margin-top: 20px">
+          <mat-label>Choose Source</mat-label>
+
+          <!-- Report Sources Drop Down -->
+          <mat-select formControlName="source">
+            <mat-option [value]=null>-Select Source-</mat-option>
+            <mat-option *ngFor="let source of data.report_sources"  value="{{source.id}}">{{source.name}}</mat-option>
+          </mat-select>
+
+          <mat-error>
+            Source is required
+          </mat-error>
+
+        </mat-form-field>
+      </ng-container>
+
+      <ng-template #loadingReportSources>
+        <!-- Report Sources are loading message -->
+        <p style="margin-top: 20px"><i class="fa fa-spin fa-spinner">
+        </i> Loading Report Sources...
+        </p>
+      </ng-template>
+      <br/>
+
+      <ng-container *ngIf="data.priorities; else loadingPriorities">
+        <!-- Priorities are fully loaded -->
+        <mat-form-field style="margin-top: 20px">
+          <mat-label>Choose Priority</mat-label>
+
+          <!-- Priorities Drop Down -->
+          <mat-select formControlName="priority">
+            <mat-option [value]=null>-Select Priority-</mat-option>
+            <mat-option *ngFor="let priority of data.priorities"  value="{{priority.id}}">{{priority.name}}</mat-option>
+          </mat-select>
+
+        </mat-form-field>
+      </ng-container>
+
+      <ng-template #loadingPriorities>
+        <!-- Priorities are loading message -->
+        <p style="margin-top: 20px"><i class="fa fa-spin fa-spinner"></i>
+          Loading Priorities...
+        </p>
+      </ng-template>
+
+
+
+      <br/>
+
+
+      <ng-container *ngIf="data.authors; else loadingAuthors">
+        <!-- Authors are loaded -->
+        <mat-form-field style="margin-top: 20px">
+          <mat-label>Choose Authors</mat-label>
+
+          <mat-select multiple formControlName="authors">
+            <mat-option *ngFor="let author of data.authors"  value="{{author.id}}">{{author.name}}</mat-option>
+          </mat-select>
+
+          <mat-error *ngIf="myForm.controls?.authors?.errors?.required">
+            Authors are required
+          </mat-error>
+
+          <mat-error *ngIf="myForm.controls?.authors?.errors?.custom_error">
+            {{myForm.controls?.authors?.errors?.custom_error}}
+          </mat-error>
+
+        </mat-form-field>
+      </ng-container>
+
+      <ng-template #loadingAuthors>
+        <!-- Authors are loading message -->
+        <p style="margin-top: 20px"><i class="fa fa-spin fa-spinner"></i> Loading Authors...</p>
+      </ng-template>
+      <br/>
+
+      <!-- Reset and Save Buttons -->
+      <button type="button" (click)="reset()" style="margin-top: 20px"
+              mat-raised-button>Reset</button>
+      &nbsp;&nbsp;
+      <button type="button" (click)="save()" mat-raised-button color="primary">Save</button>
+    </mat-card-content>
+
+  </form>
+</mat-card>
+
+<pre>
+myForm.valid={{this.myForm.valid}}
+  myForm.controls.report_name.errors={{this.myForm.controls?.report_name?.errors | json}}
+  myForm.controls.priority.errors={{this.myForm.controls?.priority?.errors | json}}
+  myForm.controls.source.errors={{this.myForm.controls?.source?.errors | json}}
+  myForm.controls.authors.errors={{this.myForm.controls?.authors?.errors | json}}
+</pre>
+
+</ng-container>

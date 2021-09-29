@@ -1,0 +1,53 @@
+<div class="page-container">
+
+  <div fxFlexFill fxLayout="column" fxLayoutGap="5px">
+
+    <div fxFlex fxLayout="row" fxLayoutGap="0">
+
+      <!-- Left Side of the Top Row -->
+      <div fxFlex fxLayoutAlign="left center" fxLayout="row" fxLayoutGap="0">
+        <h1 class="mat-h1">Submit Report using Markdown Editor</h1>
+      </div>
+
+
+      <!-- Right Side of the Top Row -->
+      <div fxFlex fxLayoutAlign="end center">
+
+      </div>
+
+    </div>  <!-- End of top row -->
+
+
+
+    <!-- Start of the 2nd row -->
+    <div fxFlex  fxLayout="column" fxLayoutGap="0">
+
+      <form novalidate autocomplete="off" [formGroup]="myForm">
+
+        <div style="margin-left: 10px; margin-top: 5px"
+             [ngClass]="{ 'light':  this.currentTheme.isLightMode == true,
+                           'dark':  this.currentTheme.isLightMode == false
+                        }">
+
+          <!-- Markdown Editor -->
+          <quill-editor class="content-editor" formControlName="markdownEditor" [placeholder]="'Enter your thoughts here....'" [styles]="{'min-height': '150px', 'max-height': '450px'}"
+          ></quill-editor>
+
+          <!-- Save Button -->
+          <button mat-raised-button type="button" color="primary" style="margin-top: 10px" title="Save Comment">Save</button>
+
+        </div>
+
+      </form>
+
+    </div> <!-- End of 2nd row -->
+
+
+
+  </div> <!-- End of Angular flex column -->
+
+</div>  <!-- End of page container -->
+
+<pre>
+  this.myForm.controls.markdownEditor.value={{this.myForm.controls.markdownEditor.value}}
+</pre>

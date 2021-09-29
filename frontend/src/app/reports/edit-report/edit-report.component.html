@@ -1,0 +1,60 @@
+<ng-container *ngIf="this.formInfoObs | async">
+
+    <mat-card>
+      <form novalidate autocomplete="off" [formGroup]="myForm" >
+
+        <mat-card-title>Edit Report {{this.reportId}}</mat-card-title>
+
+        <mat-card-content>
+
+          <mat-form-field>
+            <mat-label>Enter Report Name</mat-label>
+
+            <!-- Report Name -->
+            <input matInput type="text" formControlName="report_name" />
+
+            <mat-error>
+              Report Name is required
+            </mat-error>
+          </mat-form-field>
+          <br/>
+
+
+          <mat-form-field>
+            <mat-label>Choose Priority</mat-label>
+
+            <!-- Single Select -->
+            <mat-select name="priority" formControlName="priority" required>
+              <mat-option [value]=null>-Select Priority-</mat-option>
+              <mat-option [value]=1>Low</mat-option>
+              <mat-option [value]=2>Medium</mat-option>
+              <mat-option [value]=3>High</mat-option>
+              <mat-option [value]=4>Critical</mat-option>
+            </mat-select>
+
+            <mat-error>
+              Priority is required
+            </mat-error>
+
+          </mat-form-field>
+
+          <!-- Save Button -->
+          <button mat-raised-button color="primary" (click)="this.save()">Save</button>
+
+          <div *ngIf="this.saveWhileEditingInProgress" style="margin-top: 20px; display: block">
+              <!-- Save-while-editing is in progress -->
+              <span class="save-while-editing-label">Saving...</span>
+          </div>
+
+        </mat-card-content>
+      </form>
+    </mat-card>
+
+    <pre>
+      myForm.valid={{this.myForm.valid}}
+      myForm.controls.report_name.value={{this.myForm.controls?.report_name?.value}}
+      myForm.controls.report_name.errors={{this.myForm.controls?.report_name?.errors | json}}
+      myForm.controls.priority.value={{this.myForm.controls?.priority?.value}}
+      myForm.controls.priority.errors={{this.myForm.controls?.priority?.errors | json}}
+    </pre>
+</ng-container>

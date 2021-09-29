@@ -1,0 +1,39 @@
+input[type="file"] {
+  /* Hide the ugly "Choose File" upload label */
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #2579af;
+  border-radius: 6px;
+  display: inline-block;
+  padding: 7px 15px 7px 15px;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover {
+  border: 1px solid #1CB6E0;
+  border-radius: 6px;
+  display: inline-block;
+  padding: 7px 15px 7px 15px;
+  cursor: pointer;
+  color: white;
+  background: #2579af;
+  white-space: nowrap;
+}
+
+
+.mat-progress-bar {
+  height: 15px;
+}
+
+.error-message {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:host ::ng-deep .mat-progress-bar .mat-progress-bar-fill {
+    /* Fix the bug with the mat-progress-bar's animation being choppy */
+    transition: transform 100ms linear;
+}
